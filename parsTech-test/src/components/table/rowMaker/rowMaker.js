@@ -7,7 +7,7 @@ import { useTodoListStore } from '@/stores/todolist.js'
 export function useAddRow({headers}) {
   const { addRow}= useTodoListStore()
   const state = reactive({
-    modal_demo: null,
+    modal: null,
 })
 
 function addToTodolist(e)
@@ -23,17 +23,17 @@ function addToTodolist(e)
 
   function openModal()
   {
-      state.modal_demo.show()
+      state.modal.show()
   }
   
   function closeModal()
   {
-      state.modal_demo.hide()
+      state.modal.hide()
   }
 
   // a composable can also hook into its owner component's
   // lifecycle to setup and teardown side effects.
-  onMounted(() => state.modal_demo = new Modal('#modal_demo', {}))
+  onMounted(() => state.modal = new Modal('#addRowModal', {}))
 
 
   // expose managed state as return value
