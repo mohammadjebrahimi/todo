@@ -1,7 +1,7 @@
 <template>
 <div class="">
 <div class="">
-<AddRow :headers="headers"/>
+<RowMaker :headers="headers"/>
 
 </div>
   <table class="table table-hover">
@@ -41,10 +41,7 @@ defineProps({
 
 })
 
-import AddRow from './addRow.vue';
-import { useTable } from './table.js'
-
-const { x, y } = useTable()
+import RowMaker from '@/components/table/rowMaker/RowMaker.vue';
 </script>
 
 

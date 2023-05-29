@@ -36,7 +36,7 @@ const props = defineProps({
   },
 })
 
-import { useAddRow } from './addRow.js'
+import { useAddRow } from './rowMaker'
 
 const { openModal, closeModal, addToTodolist } = useAddRow({ ...props })
 </script>
