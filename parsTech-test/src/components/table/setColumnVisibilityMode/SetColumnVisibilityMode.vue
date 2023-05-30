@@ -1,15 +1,12 @@
 <template>
-  <div class="btn btn-primary m-1 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+  <div class="btn btn-primary m-1 dropdown-toggle" href="#"  role="button" data-toggle="dropdown"
     aria-haspopup="true" data-bs-toggle="dropdown" aria-expanded="false">
     Dropdown
   </div>
 
-  <div class="dropdown-menu" id="headerVisibilityDRP" aria-labelledby="navbarDropdown">
-
-
-
+  <div class="dropdown-menu" id="headerVisibilityDRP" >
     <div v-for="(headerValue, headerkey, index) in headers" :key="'headerVisibility-' + index" class="dropdown-item"
-    :class="{ active: headerValue.isVisible }" @click="toggleColumnVisible(headerkey)">
+      :class="{ active: headerValue.isVisible }" @click="toggleColumnVisible(headerkey)">
       {{ headerkey }}</div>
   </div>
 </template>
