@@ -5,8 +5,17 @@ import { useTodoListStore } from '@/stores/todolist.js'
 
 // by convention, composable function names start with "use"
 export function useFilter({ headers }) {
-  const { filterOption } = useTodoListStore()
+  const { filterOption ,updateTodoListFilter,todoListFilter} = useTodoListStore()
 
-console.log(filterOption);
-  return { filterOption }
+  const filter = (e, closeModal) => {
+    const filters = Object.keys(headers).reduce((filter, header) => {
+      filter[header] = e.target.elements[header].value
+
+      return filter
+    }, {})
+    updateTodoListFilter(filters)
+    console.log(todoListFilter);
+    closeModal()
+  }
+  return { filterOption, filter }
 }

@@ -13,22 +13,20 @@ export const useTodoListStore = defineStore('todoList', () => {
     creationDate: 's'
   }])
   const todoListFilter = ref({
-    title: 'sd',
-    description: 'dsg',
-    creationDate: 's'
+    title: '',
+    description: '',
+    creationDate: ''
   })
+  const todoListSearch = ref('')
   const todoListHeaders = ref({
     title: { isVisible: true },
     description: { isVisible: true },
     creationDate: { isVisible: true }
   })
-  const filteredRows = computed((rows) => rows.filter((item) => {
-    for (const key in todoListFilter.value) {
-      if (item[key] === undefined || item[key] != todoListFilter.value[key])
-        return false;
-    }
-    return true;
-  }))
+
+
+
+
   const filterOption = computed(() => todoListRows.value.reduce((acc, item) => {
     for (const key in todoListHeaders.value) {
       if (item[key] !== undefined) {
@@ -37,14 +35,33 @@ export const useTodoListStore = defineStore('todoList', () => {
     }
     return acc
   }, {}))
-  const searchedRows = computed(({ rows, search }) => rows.filter((item) => {
+
+
+
+
+
+
+  const searchedRows = ({ rows }) => rows.filter((item) => {
     for (const key in todoListHeaders.value) {
-      if (item[key] === undefined || !item[key].includes(search))
+      if (item[key] === undefined || !item[key].includes(todoListSearch.value))
         return false;
     }
     return true;
-  }))
+  })
+  const filteredRows = (rows) => rows.filter((item) => {
+    for (const key in todoListFilter.value) {
+      if (item[key] === undefined || item[key] != todoListFilter.value[key] && todoListFilter.value[key])
+        return false;
+    }
+    return true;
+  })
+  const updateTodoListFilter = (filters) => {
+    for (const key in filters) {
+      if (todoListFilter.value[key] !== undefined)
+        todoListFilter.value[key] = filters[key]
+    }
 
+  }
   const addRow = (row) => {
     const creationDate = new Date().toLocaleDateString();
     todoListRows.value.push({ ...row, creationDate })
@@ -74,6 +91,8 @@ export const useTodoListStore = defineStore('todoList', () => {
     updateTodoListHeaderVisibility,
     filteredRows,
     todoListFilter,
-    filterOption
+    filterOption,
+    searchedRows,
+    updateTodoListFilter
   }
 })

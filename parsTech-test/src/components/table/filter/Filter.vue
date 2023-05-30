@@ -1,10 +1,11 @@
 <template>
   <Modal id="filterModal" title="filter">
     <template #default="{ closeModal }">
-      <form @submit.prevent="addToTodolist($event, closeModal)">
-        <select v-for="(headerValue, headerkey, index) in headers" :key="'headerFilter-' + index" class="form-select m-2"
-          aria-label="Default select example">
-          <option selected>Filter this {{ headerkey }} menu</option>
+      <form @submit.prevent="filter($event, closeModal)">
+        <select v-for="(headerValue, headerkey, index) in headers" :name="headerkey" :key="'headerFilter-' + index" class="form-select m-2"
+         value=""
+        aria-label="Default select example">
+          <option value='' selected>Filter this {{ headerkey }} menu</option>
           <option v-for="(optionValue, optionIndex) in filterOption[headerkey]" :key="'filterOption-' + optionIndex"
             :value="optionValue">{{ optionValue }}</option>
         </select>
@@ -25,7 +26,7 @@ const props = defineProps({
 import Modal from '../../modal/Modal.vue';
 import { useFilter } from './useFilter'
 
-const { filterOption } = useFilter({ ...props })
+const { filterOption,filter } = useFilter({ ...props })
 </script>
 
 
