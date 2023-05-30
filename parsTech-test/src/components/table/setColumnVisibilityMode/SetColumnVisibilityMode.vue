@@ -1,7 +1,7 @@
 <template>
   <div class="btn btn-primary m-1 dropdown-toggle" href="#"  role="button" data-toggle="dropdown"
     aria-haspopup="true" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown
+    Show/Hide
   </div>
 
   <div class="dropdown-menu" id="headerVisibilityDRP" >
