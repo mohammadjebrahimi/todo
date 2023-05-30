@@ -17,7 +17,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, rowIndex) in rows " :key="'row-' + rowIndex">
+      <tr v-for="(row, rowIndex) in filteredRow " :key="'row-' + rowIndex">
         <td scope="row">{{ rowIndex + 1 }}</td>
         <template  v-for="(headerValue,headerkey, rowItemIndex) in headers" :key="'rowItem-' + rowItemIndex" >
           <td  v-if="headerValue.isVisible"  scope="col">{{ row[headerkey] }}</td>
@@ -29,7 +29,13 @@
 </div>  
 </template>
 <script setup>
-defineProps({
+
+import RowMaker from '@/components/table/rowMaker/RowMaker.vue';
+import SetColumnVisibilityMode from '@/components/table/setColumnVisibilityMode/SetColumnVisibilityMode.vue';
+import Filter from './filter/filter.vue';
+import {useTable} from './useTable';
+
+const props=defineProps({
 
   headers: {
     tyope: Array,
@@ -42,9 +48,8 @@ defineProps({
 
 })
 
-import RowMaker from '@/components/table/rowMaker/RowMaker.vue';
-import SetColumnVisibilityMode from '@/components/table/setColumnVisibilityMode/SetColumnVisibilityMode.vue';
-import Filter from './filter/filter.vue';
+
+const{filteredRow}=useTable({props})
 </script>
 
 
