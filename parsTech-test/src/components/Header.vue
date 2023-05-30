@@ -1,6 +1,6 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" :class="{'bg-dark':!islightMode}">
+    <a  @click="togglelightMode()" class="navbar-brand" href="#">Dark/Light</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -14,11 +14,12 @@
             next Task
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <div  v-for="(headerValue, index) in NextTask" :key="'nextTask-' + index" class="card border-success" style="max-width: 18rem;">
+            <div v-for="(headerValue, index) in NextTask" :key="'nextTask-' + index" class="card border-success"
+              style="max-width: 18rem;">
               <div class="card-body ">
-                <h6 class="card-title">{{headerValue.title}}</h6>
+                <h6 class="card-title">{{ headerValue.title }}</h6>
               </div>
-              <div class="card-footer bg-transparent border-success">{{headerValue.dueDate}}</div>
+              <div class="card-footer bg-transparent border-success">{{ headerValue.dueDate }}</div>
             </div>
           </div>
         </li>
@@ -28,12 +29,15 @@
 </template>
 <script setup>
 import { useTodoItemStore } from '@/stores/todoItem.js'
-import { ref } from 'vue';
+import { useLightModeStore } from '@/stores/lightMode.js'
+import { ref, toRefs } from 'vue';
 
-const {getAllToDoItem ,sortDate} = useTodoItemStore()
-const NextTask= ref(sortDate.desc({array:getAllToDoItem(),key:'dueDate'}));
+const { islightMode,togglelightMode } = toRefs( useLightModeStore())
+const { getAllToDoItem, sortDate } = useTodoItemStore()
+console.log('togglelightMode',islightMode);
+const NextTask = ref(sortDate.desc({ array: getAllToDoItem(), key: 'dueDate' }));
 defineProps({
- 
+
 })
 
 
@@ -64,4 +68,5 @@ h3 {
   .greetings h3 {
     text-align: left;
   }
-}</style>
+}
+</style>
