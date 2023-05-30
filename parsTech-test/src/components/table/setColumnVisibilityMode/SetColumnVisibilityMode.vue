@@ -16,6 +16,10 @@ const props = defineProps({
     tyope: Object,
     default: {}
   },
+  store:{
+    tyope: Function,
+
+  }
 })
 
 import { useSetColumnVisibilityMode } from '@/components/table/setColumnVisibilityMode/useSetColumnVisibilityMode'

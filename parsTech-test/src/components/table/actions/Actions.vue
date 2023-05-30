@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex p-2">
-    <button type="button" class="btn btn-danger m-1" @click="deleteRow(rowIndex)">delete</button>
-    <Modal id="updateRowModal" title="update">
+    <button type="button" class="btn btn-danger m-1" @click.stop="deleteRow(rowIndex)">delete</button>
+    <Modal :id='"updateRowModal"' title="update">
       <template #default="{ closeModal }">
         <form @submit.prevent="updateRowAndCloseModal({ rowIndex,event: $event,CLB:closeModal } )">
           {{row}}
@@ -9,7 +9,7 @@
             <label :for="'updaterow-' + index">{{ rowkey }}</label>
             <input :value="rowValue" :name="rowkey" class="form-control" :id="'updaterow-' + index" :placeholder="rowkey">
           </div>
-          <button class="btn btn-primary">Submit</button>
+          <button @click.stop class="btn btn-primary">Submit</button>
         </form>
       </template>
 
@@ -29,6 +29,10 @@ const props = defineProps({
     tyope: Object,
     default: {}
   },
+  store:{
+    tyope: Function,
+
+  }
 })
 const { deleteRow,
   updateRowAndCloseModal} = useActions({ ...props })

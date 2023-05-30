@@ -1,5 +1,5 @@
 <template>
-  <Modal id="filterModal" title="filter">
+  <Modal :id='"filterModal"'  title="filter">
     <template #default="{ closeModal }">
       <form @submit.prevent="filter($event, closeModal)">
         <select v-for="(headerValue, headerkey, index) in headers" :name="headerkey" :key="'headerFilter-' + index" class="form-select m-2"
@@ -21,6 +21,10 @@ const props = defineProps({
     tyope: Object,
     default: {}
   },
+  store:{
+    tyope: Function,
+
+  }
 })
 
 import Modal from '../../modal/Modal.vue';

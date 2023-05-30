@@ -1,10 +1,10 @@
 <template>
 <div class="">
 <div class="d-flex p-2">
-<RowMaker :headers="headers"/>
-<SetColumnVisibilityMode :headers="headers"/>
-<Filter :headers="headers"/>
-<Search/>
+<RowMaker :store="store" :headers="headers"/>
+<SetColumnVisibilityMode :store="store"  :headers="headers"/>
+<Filter :store="store"  :headers="headers"/>
+<Search :store="store"/>
 </div>
   <table class="table table-hover">
     
@@ -18,12 +18,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(row, rowIndex) in filteredRow " :key="'row-' + rowIndex">
+      <tr @click="rowClicked(row.id)" v-for="(row, rowIndex) in filteredRow " :key="'row-' + rowIndex">
         <td scope="row">{{ rowIndex + 1 }}</td>
         <template  v-for="(headerValue,headerkey, rowItemIndex) in headers" :key="'rowItem-' + rowItemIndex" >
           <td  v-if="headerValue.isVisible"  scope="col">{{ row[headerkey] }}</td>
         </template>
-        <td scope="row"><Actions :rowIndex="rowIndex" :row="row"/></td>
+        <td scope="row"><Actions :store="store" :rowIndex="rowIndex" :row="row"/></td>
       </tr>
     </tbody>
   </table>
@@ -47,12 +47,16 @@ const props=defineProps({
   rows: {
     tyope: Array,
     default: []
+  },
+  store:{
+    tyope: Function,
+
   }
 
 })
+const emit = defineEmits(['rowClicked'])
 
-
-const{filteredRow}=useTable({props})
+const{filteredRow,rowClicked}=useTable({props,emit})
 </script>
 
 

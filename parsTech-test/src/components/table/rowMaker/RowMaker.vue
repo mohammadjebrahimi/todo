@@ -1,7 +1,7 @@
 <template>
 
 
-  <Modal id="addRowModal" title="Add row">
+  <Modal :id='"addRowModal"'  title="Add row">
     <template #default="{ closeModal }">
       <form  @submit.prevent="addToTodolist($event,closeModal)">
       <div v-for="(headerValue, headerkey, index) in headers" :key="'headerInput-' + index" class="form-group">
@@ -20,6 +20,10 @@ const props = defineProps({
     tyope: Object,
     default: {}
   },
+  store:{
+    tyope: Function,
+
+  }
 })
 
 import Modal from '../../modal/Modal.vue';

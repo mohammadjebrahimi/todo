@@ -1,6 +1,6 @@
 <template>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary m-1" @click="openModal()" :data-target="`#${id}`">
+  <button type="button" class="btn btn-primary m-1" @click.stop ="openModal()" :data-target="`#${id}`">
     {{ title }}
   </button>
 
@@ -9,7 +9,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel"> {{ title }}</h5>
-          <button type="button" class="close" @click="closeModal()" aria-label="Close">
+          <button type="button" class="close" @click.stop ="closeModal()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>

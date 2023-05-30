@@ -1,14 +1,21 @@
 
-import { useTodoListStore } from '@/stores/todolist.js'
+
 import { computed } from 'vue'
 
-export function useTable({ headers }) {
-    const { searchedRows, filteredRows, todoListRows } = useTodoListStore()
+export function useTable({ props,emit }) {
+
+   
+    const { searchedRows, filteredRows, rows } = props.store
 
 
     const filteredRow = computed(() => {
-        return filteredRows(searchedRows({ rows: todoListRows, search: '' }))
+        console.log(filteredRows(searchedRows({ rows: rows})));
+        return filteredRows(searchedRows({ rows: rows}))
     }
     )
-    return { filteredRow }
+    const rowClicked=(rowIndex)=>{
+        emit('rowClicked',rowIndex)
+
+    }
+    return { filteredRow,rowClicked }
 }

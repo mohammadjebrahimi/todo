@@ -1,20 +1,16 @@
 // mouse.js
 import { reactive } from 'vue'
 
-import { useTodoListStore } from '@/stores/todolist.js'
 
-export function useSearch() {
-  const { todoListHeaders, todoListSearch,updateTodoListSearch } = useTodoListStore()
-  const state = reactive({
-    dropdown: null,
-  })
 
+export function useSearch({store}) {
+  const { headers, search,updateSearch } = store
 
 
   function selectSearchColumn(key) {
-    updateTodoListSearch({selectedColumn:key })
+    updateSearch({selectedColumn:key })
   }
 
 
-  return { todoListSearch, todoListHeaders, selectSearchColumn }
+  return { search, headers, selectSearchColumn }
 }

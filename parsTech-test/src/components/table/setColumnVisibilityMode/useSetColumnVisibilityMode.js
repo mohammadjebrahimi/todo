@@ -1,11 +1,10 @@
 // mouse.js
 import { reactive, onMounted, onUnmounted } from 'vue'
-import { Dropdown } from 'bootstrap'
-import { useTodoListStore } from '@/stores/todolist.js'
+
 
 // by convention, composable function names start with "use"
-export function useSetColumnVisibilityMode({ headers }) {
-  const { addRow,todoListHeaders, updateTodoListHeaderVisibility } = useTodoListStore()
+export function useSetColumnVisibilityMode({ store }) {
+  const { addRow,headers, updateHeaderVisibility } = store
   const state = reactive({
     dropdown: null,
   })
@@ -13,7 +12,7 @@ export function useSetColumnVisibilityMode({ headers }) {
 
 
   function toggleColumnVisible(key) {
-    updateTodoListHeaderVisibility({ key, isVisible: !todoListHeaders[key].isVisible })
+    updateHeaderVisibility({ key, isVisible: !headers[key].isVisible })
   }
 
  

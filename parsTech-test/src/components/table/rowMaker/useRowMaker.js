@@ -1,7 +1,7 @@
-import { useTodoListStore } from '@/stores/todolist.js'
 
-export function useAddRow({ headers }) {
-  const { addRow } = useTodoListStore()
+
+export function useAddRow({ headers ,store }) {
+  const { addRow } =store
   function addToTodolist(e, closeModal) {
 
     const row = Object.keys(headers).reduce((row, header) => {
