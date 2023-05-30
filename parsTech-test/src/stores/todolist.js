@@ -35,7 +35,7 @@ export const useTodoListStore = defineStore('todoList', () => {
   }
 
   const updateTodoListHeaderVisibility=({key,isVisible})=>{
-   return todoListHeaders.value[key]=isVisible
+   return todoListHeaders.value[key].isVisible=isVisible
   }
 
   return { todoListRows, addRow, deleteRow, updateRow, todoListHeaders,updateTodoListHeaderVisibility }
