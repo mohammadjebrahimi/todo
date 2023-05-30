@@ -5,12 +5,11 @@ export function useAddRow({ headers }) {
   function addToTodolist(e, closeModal) {
 
     const row = Object.keys(headers).reduce((row, header) => {
-
       row[header] = e.target.elements[header].value
-      closeModal()
       return row
     }, {})
     addRow(row)
+    closeModal()
   }
 
   return { addToTodolist }
