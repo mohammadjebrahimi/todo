@@ -6,7 +6,7 @@
 <Filter :store="store"  :headers="headers"/>
 <Search :store="store"/>
 </div>
-  <table class="table table-hover" :class="{'table-dark':!islightMode}">
+<div class="overflow-scroll"> <table class="table table-hover" :class="{'table-dark':!islightMode}">
     
     <thead>
       <tr>
@@ -26,7 +26,8 @@
         <td scope="row"><Actions :store="store" :rowIndex="rowIndex" :row="row"/></td>
       </tr>
     </tbody>
-  </table>
+  </table></div>
+ 
 </div>  
 </template>
 <script setup>
