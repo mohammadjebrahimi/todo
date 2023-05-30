@@ -7,7 +7,6 @@ import { onMounted, ref } from 'vue';
 
 onMounted(() => setParentId(route.params.id))
 const route = useRoute();
-console.log(route.params.id);
 const { headers, rows, setParentId } = useTodoItemStore()
 const gotoTodoPage = (e) => {
   router.push({ name: 'todo', params: { id: e } })

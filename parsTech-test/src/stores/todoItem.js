@@ -9,16 +9,16 @@ export const useTodoItemStore = defineStore('todoItem', () => {
       [{
         title: 'jfgjf',
         description: 'ssfsf',
-        dueDate: 'sfsfss',
+        dueDate: '5/30/2023',
         priority: 'dggsg',
-        creationDate: 's'
+        creationDate: '5/30/2023'
 
       }, {
         title: 'jfgjffff',
         description: 'sdgfgdsfsf',
-        dueDate: 'sfsfdfgdfgss',
+        dueDate: '5/34/2023',
         priority: 'dggdfgdfgdfgsg',
-        creationDate: 's'
+        creationDate: '8/30/2023'
       }],
     fhfhfdh: [],
     fhhgjghjghjfhfdh: []
@@ -56,7 +56,32 @@ export const useTodoItemStore = defineStore('todoItem', () => {
       return acc
     }, {})
   })
+  const getAllToDoItem = () => {
+    let result = []
+    for (const key in rows.value) {
 
+      result = [...result, ...rows.value[key]]
+    }
+
+    console.log(',',result);
+    return result
+  }
+
+
+  const sortDate = {
+    asc: ({ array, key }) => {
+      return array.sort(function (a, b) {
+        return new Date(a[key]) - new Date(b[key]);
+      });
+
+    },
+    desc: ({ array, key }) => {
+      return array.sort(function (a, b) {
+        return new Date(b[key]) - new Date(a[key]);
+      });
+    }
+
+  }
 
 
 
@@ -145,6 +170,8 @@ export const useTodoItemStore = defineStore('todoItem', () => {
     updateSearch,
     setParentId,
     addKeyByParentId,
-    deleteKeyByParentId
+    deleteKeyByParentId,
+    getAllToDoItem,
+    sortDate
   }
 })
