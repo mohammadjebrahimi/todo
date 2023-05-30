@@ -17,11 +17,16 @@ export const useTodoListStore = defineStore('todoList', () => {
     description: '',
     creationDate: ''
   })
-  const todoListSearch = ref('')
+  const todoListSearch = ref({
+    selectedColumn: 'title',
+    searchString: ''
+  })
   const todoListHeaders = ref({
-    title: { isVisible: true },
-    description: { isVisible: true },
-    creationDate: { isVisible: true }
+    title: { isVisible: true, isSearchable: true },
+    description: {
+      isVisible: true, isSearchable: true
+    },
+    creationDate: { isVisible: true, isSearchable: false }
   })
 
 
@@ -42,10 +47,10 @@ export const useTodoListStore = defineStore('todoList', () => {
 
 
   const searchedRows = ({ rows }) => rows.filter((item) => {
-    for (const key in todoListHeaders.value) {
-      if (item[key] === undefined || !item[key].includes(todoListSearch.value))
-        return false;
-    }
+    const column = todoListSearch.value.selectedColumn
+    if (item[column] === undefined || !item[column].includes(todoListSearch.value.searchString))
+      return false;
+
     return true;
   })
   const filteredRows = (rows) => rows.filter((item) => {
@@ -81,7 +86,12 @@ export const useTodoListStore = defineStore('todoList', () => {
   const updateTodoListHeaderVisibility = ({ key, isVisible }) => {
     return todoListHeaders.value[key].isVisible = isVisible
   }
-
+  const updateTodoListSearch = (searchOption) => {
+    for (const key in searchOption) {
+      if (todoListSearch.value[key] !== undefined)
+        todoListSearch.value[key] = searchOption[key]
+    }
+  }
   return {
     todoListRows,
     addRow,
@@ -93,6 +103,8 @@ export const useTodoListStore = defineStore('todoList', () => {
     todoListFilter,
     filterOption,
     searchedRows,
-    updateTodoListFilter
+    updateTodoListFilter,
+    todoListSearch,
+    updateTodoListSearch
   }
 })

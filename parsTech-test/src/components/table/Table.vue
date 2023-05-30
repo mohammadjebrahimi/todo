@@ -4,6 +4,7 @@
 <RowMaker :headers="headers"/>
 <SetColumnVisibilityMode :headers="headers"/>
 <Filter :headers="headers"/>
+<Search/>
 </div>
   <table class="table table-hover">
     
@@ -33,6 +34,7 @@
 import RowMaker from '@/components/table/rowMaker/RowMaker.vue';
 import SetColumnVisibilityMode from '@/components/table/setColumnVisibilityMode/SetColumnVisibilityMode.vue';
 import Filter from './filter/filter.vue';
+import Search from './search/Search.vue';
 import {useTable} from './useTable';
 
 const props=defineProps({
