@@ -23,7 +23,7 @@
         <template  v-for="(headerValue,headerkey, rowItemIndex) in headers" :key="'rowItem-' + rowItemIndex" >
           <td  v-if="headerValue.isVisible"  scope="col">{{ row[headerkey] }}</td>
         </template>
-        <td scope="row">act</td>
+        <td scope="row"><Actions :rowIndex="rowIndex" :row="row"/></td>
       </tr>
     </tbody>
   </table>
@@ -33,6 +33,7 @@
 
 import RowMaker from '@/components/table/rowMaker/RowMaker.vue';
 import SetColumnVisibilityMode from '@/components/table/setColumnVisibilityMode/SetColumnVisibilityMode.vue';
+import Actions from './actions/Actions.vue';
 import Filter from './filter/filter.vue';
 import Search from './search/Search.vue';
 import {useTable} from './useTable';

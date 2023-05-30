@@ -75,8 +75,13 @@ export const useTodoListStore = defineStore('todoList', () => {
     return checkRowIndex ? todoListRows.value.splice(index, 1) : []
   }
   const updateRow = ({ index, row }) => {
-    return checkRowIndex ? todoListRows.value[index] = row : null
-
+ 
+    for (const key in row) {
+      console.log(row);
+      if (todoListRows.value[index][key] !== undefined)
+      todoListRows.value[index][key] = row[key]
+    }
+console.log(todoListRows);
   }
   const checkRowIndex = () => {
     const index = todoListRows.value.indexOf(5);
