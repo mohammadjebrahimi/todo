@@ -2,7 +2,7 @@
 
 <div class="input-group w-50">
   <input type="search" v-model="todoListSearch.searchString" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-  <div class="btn btn-primary m-1 dropdown-toggle" href="#"  role="button" data-toggle="dropdown"
+  <div class="btn btn-primary dropdown-toggle" href="#"  role="button" data-toggle="dropdown"
     aria-haspopup="true" data-bs-toggle="dropdown" aria-expanded="false">
     {{todoListSearch.selectedColumn}}
   </div>
