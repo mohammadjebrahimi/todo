@@ -1,6 +1,6 @@
 <template>
 <div class="">
-<div class="d-flex p-2" :class="{'navbar-dark bg-dark':!islightMode}">
+<div class="d-flex p-2 flex-wrap" :class="{'navbar-dark bg-dark':!islightMode}">
 <RowMaker :store="store" :headers="headers"/>
 <SetColumnVisibilityMode :store="store"  :headers="headers"/>
 <Filter :store="store"  :headers="headers"/>
