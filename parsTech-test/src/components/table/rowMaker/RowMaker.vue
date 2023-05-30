@@ -1,6 +1,6 @@
 <template>
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" @click="openModal()" data-target="#exampleModal">
+  <button type="button" class="btn btn-primary m-1" @click="openModal()" data-target="#exampleModal">
     Add row
   </button>
 
