@@ -1,7 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import Header from './components/Header.vue';
+import { useLightModeStore } from '@/stores/lightMode.js'
+import { ref, toRefs } from 'vue';
 
+const { islightMode } = useLightModeStore()
 
 
 </script>
@@ -11,11 +14,17 @@ import Header from './components/Header.vue';
   <RouterView />
 </template>
 
-<style>
+<style >
 #app {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
+  margin: 0%;
   min-height: 100vh;
+
+
+}
+ main {
+  overflow: hidden;
 }
 </style>
