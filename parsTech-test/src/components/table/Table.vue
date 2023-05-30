@@ -1,8 +1,8 @@
 <template>
 <div class="">
-<div class="">
+<div class="d-flex p-2">
 <RowMaker :headers="headers"/>
-
+<SetColumnVisibilityMode :headers="headers"/>
 </div>
   <table class="table table-hover">
     
@@ -42,6 +42,7 @@ defineProps({
 })
 
 import RowMaker from '@/components/table/rowMaker/RowMaker.vue';
+import SetColumnVisibilityMode from '@/components/table/setColumnVisibilityMode/SetColumnVisibilityMode.vue';
 </script>
 
 
