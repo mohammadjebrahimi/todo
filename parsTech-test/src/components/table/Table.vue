@@ -1,12 +1,12 @@
 <template>
 <div class="">
-<div class="d-flex p-2">
+<div class="d-flex p-2" :class="{'navbar-dark bg-dark':!islightMode}">
 <RowMaker :store="store" :headers="headers"/>
 <SetColumnVisibilityMode :store="store"  :headers="headers"/>
 <Filter :store="store"  :headers="headers"/>
 <Search :store="store"/>
 </div>
-  <table class="table table-hover">
+  <table class="table table-hover" :class="{'table-dark':!islightMode}">
     
     <thead>
       <tr>
@@ -37,7 +37,10 @@ import Actions from './actions/Actions.vue';
 import Filter from './filter/filter.vue';
 import Search from './search/Search.vue';
 import {useTable} from './useTable';
+import { useLightModeStore } from '@/stores/lightMode.js'
+import { ref, toRefs } from 'vue';
 
+const { islightMode } = toRefs( useLightModeStore())
 const props=defineProps({
 
   headers: {
